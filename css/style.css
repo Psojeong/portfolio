@@ -1,0 +1,292 @@
+:root {
+  --bg: #202024;
+  --text: #e4e4e4;
+  --title: #eeeeee;
+  --muted: #888888;
+  --white: #ffffff;
+  --overlay: rgba(255, 255, 255, 0.97);
+  --overlay-text: #222222;
+  --placeholder: #2a2a2f;
+  --font: tahoma, Verdana, "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
+  --cover-gap: 15px;
+  --module-gap: 20px;
+  --grid-gap: 8px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; text-decoration: none; }
+img, video { display: block; max-width: 100%; }
+
+/* ---------- Header ---------- */
+.site-header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 120px;
+  padding: 0 38px;
+}
+
+.nav {
+  position: absolute;
+  left: 38px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  gap: 22px;
+}
+
+.nav a {
+  font-size: 16px;
+  line-height: 24px;
+  text-transform: uppercase;
+  color: var(--white);
+  font-weight: 400;
+  transition: opacity .2s;
+}
+.nav a.active { font-weight: 700; }
+.nav a:hover { opacity: .7; }
+
+.logo {
+  font-size: 28px;
+  line-height: 32px;
+  font-weight: 700;
+  font-style: italic;
+  text-transform: uppercase;
+  color: var(--white);
+  text-align: center;
+}
+
+/* ---------- Cover grid (home + other projects) ---------- */
+.covers {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--cover-gap);
+}
+
+.cover {
+  position: relative;
+  display: block;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background: var(--placeholder);
+}
+.cover.no-image { background: var(--placeholder); }
+.cover.no-image .details { opacity: 1; background: transparent; }
+.cover.no-image .details-title { color: var(--title); }
+.cover.no-image:hover .details { background: var(--overlay); }
+.cover.no-image:hover .details-title { color: var(--overlay-text); }
+
+.cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cover .details {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8%;
+  background: var(--overlay);
+  opacity: 0;
+  transition: opacity .15s;
+}
+.cover:hover .details,
+.cover:focus-visible .details { opacity: 1; }
+
+.cover .details-title {
+  font-size: 17px;
+  line-height: 22px;
+  text-transform: uppercase;
+  color: var(--overlay-text);
+  text-align: center;
+}
+.cover .details-sub {
+  display: block;
+  margin-top: 6px;
+  font-size: 13px;
+  color: #666;
+}
+
+/* ---------- Project page ---------- */
+.page-header {
+  max-width: 750px;
+  margin: 0 auto;
+  padding: 40px 20px 70px;
+  text-align: center;
+}
+.page-title {
+  font-size: 24px;
+  line-height: 30px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--title);
+  padding-bottom: 25px;
+}
+.page-description {
+  font-size: 18px;
+  line-height: 24px;
+  color: var(--muted);
+}
+
+.modules > * + * { margin-top: var(--module-gap); }
+
+.m-img img {
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+  cursor: zoom-in;
+}
+
+.m-text {
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px 30px 40px;
+  font-size: 18px;
+  line-height: 24px;
+  color: var(--text);
+  word-break: keep-all;
+}
+.m-text a { text-decoration: underline; }
+
+.m-video video {
+  width: 100%;
+  max-width: 1920px;
+  margin: 0 auto;
+  background: #000;
+}
+
+.m-row {
+  display: flex;
+  align-items: flex-start;
+}
+.m-row > .col { min-width: 0; }
+.m-row > .col > * + * { margin-top: var(--module-gap); }
+.m-row .m-text { max-width: none; margin: 0; }
+
+.m-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--grid-gap);
+}
+.m-grid .g-item {
+  position: relative;
+  flex-basis: 0;
+  min-width: 0;
+  cursor: zoom-in;
+  overflow: hidden;
+}
+.m-grid .g-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.empty-note {
+  text-align: center;
+  color: var(--muted);
+  padding: 40px 20px 80px;
+}
+
+/* ---------- Other projects ---------- */
+.other-projects {
+  padding: 80px 0 40px;
+}
+.other-projects h3 {
+  font-size: 20px;
+  line-height: 26px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--title);
+  margin: 0 0 30px 0;
+  padding: 0 20px;
+}
+
+.back-to-top {
+  display: block;
+  text-align: center;
+  padding: 40px 0 60px;
+  font-size: 14px;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+.back-to-top:hover { color: var(--white); }
+
+/* ---------- Lightbox ---------- */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(16, 16, 18, .96);
+}
+.lightbox.open { display: flex; }
+.lightbox img {
+  max-width: 94vw;
+  max-height: 92vh;
+  object-fit: contain;
+}
+.lightbox button {
+  position: absolute;
+  background: none;
+  border: 0;
+  color: #fff;
+  font-size: 34px;
+  line-height: 1;
+  padding: 18px;
+  cursor: pointer;
+  opacity: .7;
+  font-family: var(--font);
+}
+.lightbox button:hover { opacity: 1; }
+.lightbox .lb-close { top: 8px; right: 12px; }
+.lightbox .lb-prev { left: 8px; top: 50%; transform: translateY(-50%); }
+.lightbox .lb-next { right: 8px; top: 50%; transform: translateY(-50%); }
+.lightbox .lb-count {
+  position: absolute;
+  bottom: 18px;
+  left: 0; right: 0;
+  text-align: center;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1024px) {
+  .covers { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 640px) {
+  .site-header {
+    flex-direction: column;
+    height: auto;
+    padding: 28px 16px 24px;
+    gap: 14px;
+  }
+  .nav { position: static; transform: none; }
+  .logo { font-size: 22px; line-height: 28px; }
+  .covers { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .cover .details-title { font-size: 14px; }
+  .m-row { flex-direction: column; }
+  .m-row > .col { flex: none !important; width: 100%; }
+  .m-text { padding: 16px 16px 28px; font-size: 16px; }
+  .m-grid { flex-direction: column; }
+  .m-grid .g-item { flex: none !important; width: 100%; }
+  .page-header { padding: 24px 16px 40px; }
+}
